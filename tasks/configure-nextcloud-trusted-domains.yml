@@ -1,0 +1,8 @@
+---
+# nextcloud trusted domains configuration for ansible-role-nextcloud-snap
+
+- name: "Set trusted domain."
+  command: >
+    nextcloud.occ config:system:set trusted_domains
+      {{ index }} --value={{ domain }}
+  when: "domain not in nextcloud_trusted_domains.stdout"

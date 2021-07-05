@@ -1,2 +1,10 @@
 ---
 # defaults file for ansible-role-nextcloud-snap
+#
+# Some required variables left deliberately undefined--the user MUST set them.
+
+nc_snap_admin_user: "nextcloud_admin"
+# nc_snap_admin_password: "password"
+nc_snap_trusted_domains:
+  - "localhost"
+# nc_snap_letsencrypt_email: "email@example.com"

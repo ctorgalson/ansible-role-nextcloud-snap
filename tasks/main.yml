@@ -1,2 +1,23 @@
 ---
 # tasks file for ansible-role-nextcloud-snap
+
+- name: "Install nextcloud snap."
+  include_tasks: "install-nextcloud-snap.yml"
+
+- name: "Install nextcloud app."
+  include_tasks: "install-nextcloud-app.yml"
+
+- name: "Retrieve the list of trusted domains."
+  command: "nextcloud.occ config:system:get trusted_domains"
+  register: nextcloud_trusted_domains
+  changed_when: false
+
+- name: "Configure trusted domains."
+  include_tasks: "configure-nextcloud-trusted-domains.yml"
+  loop: "{{ nc_snap_trusted_domains }}"
+  loop_control:
+    index_var: index
+    loop_var: domain
+
+- name: "Configure https and ssl certificates."
+  include_tasks: "configure-nextcloud-https.yml"
