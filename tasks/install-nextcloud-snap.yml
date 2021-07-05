@@ -3,7 +3,9 @@
 
 - name: "Ensure that it's possible to install the Nextcloud snap."
   apt:
-    name: "snapd"
+    name:
+      - "certbot"
+      - "snapd"
     state: "present"
     update_cache: true
 
