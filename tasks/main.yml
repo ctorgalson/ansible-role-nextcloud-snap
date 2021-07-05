@@ -7,17 +7,11 @@
 - name: "Install nextcloud app."
   include_tasks: "install-nextcloud-app.yml"
 
-- name: "Retrieve the list of trusted domains."
-  command: "nextcloud.occ config:system:get trusted_domains"
-  register: nextcloud_trusted_domains
-  changed_when: false
+- name: "Configure nextcloud volumes."
+  include_tasks: "configure-nextcloud-volumes.yml"
 
-- name: "Configure trusted domains."
+- name: "Configure nextcloud trusted domains."
   include_tasks: "configure-nextcloud-trusted-domains.yml"
-  loop: "{{ nc_snap_trusted_domains }}"
-  loop_control:
-    index_var: index
-    loop_var: domain
 
-- name: "Configure https and ssl certificates."
+- name: "Configure nextcloud https and ssl certificates."
   include_tasks: "configure-nextcloud-https.yml"

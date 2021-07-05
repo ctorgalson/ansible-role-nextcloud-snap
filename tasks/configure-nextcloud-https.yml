@@ -21,7 +21,7 @@
 - name: "Create a list of external domains and a list of ssl-protected domains."
   set_fact:
     nextcloud_domains: "{{ nc_snap_trusted_domains[1:] | default([]) }}"
-    nextcloud_ssl_domains: "{{ nextcloud_ssl_domains.stdout_lines[1:] | default([]) }}"
+    nextcloud_ssl_domains: "{{ nextcloud_letsencrypt_cert_domains.stdout_lines[1:] | default([]) }}"
 
 - name: "Enable https with lets-encrypt."
   expect:

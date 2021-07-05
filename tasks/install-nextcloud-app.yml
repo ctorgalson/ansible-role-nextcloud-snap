@@ -1,5 +1,5 @@
 ---
-# dependency installation for ansible-role-nextcloud-app
+# nextcloud app installation for ansible-role-nextcloud-app
 
 - name: "Get Nextcloud app status."
   command: "nextcloud.occ status"
