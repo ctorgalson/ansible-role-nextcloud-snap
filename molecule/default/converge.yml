@@ -1,6 +1,15 @@
 ---
 - name: Converge
   hosts: all
+  become: true
+  vars:
+    nc_snap_admin_user: "nc_admin_user"
+    nc_snap_admin_password: "nc_admin_password"
+    nc_snap_trusted_domains:
+      - "localhost"
+      - "example.com"
+      - "example.example"
+    nc_snap_letsencrypt_email: "example@example.com"
   tasks:
     - name: "Include ansible-role-nextcloud-snap"
       include_role:

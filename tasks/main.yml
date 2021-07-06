@@ -2,16 +2,18 @@
 # tasks file for ansible-role-nextcloud-snap
 
 - name: "Install nextcloud snap."
-  include_tasks: "install-nextcloud-snap.yml"
+  import_tasks: "install-nextcloud-snap.yml"
 
 - name: "Install nextcloud app."
-  include_tasks: "install-nextcloud-app.yml"
+  import_tasks: "install-nextcloud-app.yml"
 
 - name: "Configure nextcloud volumes."
-  include_tasks: "configure-nextcloud-volumes.yml"
+  import_tasks: "configure-nextcloud-volumes.yml"
 
 - name: "Configure nextcloud trusted domains."
-  include_tasks: "configure-nextcloud-trusted-domains.yml"
+  import_tasks: "configure-nextcloud-trusted-domains.yml"
 
 - name: "Configure nextcloud https and ssl certificates."
-  include_tasks: "configure-nextcloud-https.yml"
+  import_tasks: "configure-nextcloud-https.yml"
+  tags:
+    - notest
