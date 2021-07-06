@@ -19,6 +19,6 @@ galaxy_info:
     - private
 
 collections:
-  - name: community.general
+  - community.general
 
 dependencies: []

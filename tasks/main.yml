@@ -17,3 +17,6 @@
   import_tasks: "configure-nextcloud-https.yml"
   tags:
     - notest
+
+- name: "Run postinstall or maintenance nextcloud commands."
+  import_tasks: "run-nextcloud-commands.yml"

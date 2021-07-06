@@ -1,0 +1,8 @@
+---
+# nextcloud postinstall or maintenance commands
+
+- name: "Run nextcloud occ command(s)."
+  command: "nextcloud.occ {{ command }}"
+  loop: "{{ nc_snap_nextcloud_commands }}"
+  loop_control:
+    loop_var: command
