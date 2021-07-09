@@ -1,0 +1,16 @@
+---
+# nextcloud volume mounting and configuration
+
+- name: "Ensure non-snap nextcloud data directory exists."
+  file:
+    path: "{{ nc_snap_nextcloud_data_dir }}"
+    state: directory
+    owner: "root"
+    group: "root"
+
+- name: "Configure nextcloud to use non-snap data directory."
+  lineinfile:
+    path: "/var/snap/nextcloud/current/nextcloud/config/autoconfig.php"
+    regexp: "^'directory'"
+    create: false
+    line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}',"
