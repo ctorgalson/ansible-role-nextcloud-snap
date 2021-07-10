@@ -13,6 +13,9 @@ in. If it's the public internet, be careful :)
 
 ## Role Variables
 
+**Note**: some required variables deliberately left undefined so that the role
+won't run without them.
+
 | Variable name | Required | Default | Description |
 |---------------|---------------|----------|-------------|
 | `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
