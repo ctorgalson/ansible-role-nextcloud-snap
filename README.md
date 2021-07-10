@@ -13,7 +13,7 @@ in. If it's the public internet, be careful :)
 
 ## Role Variables
 
-| Variable name | Default value | Required | Description |
+| Variable name | Required | Default | Description |
 |---------------|---------------|----------|-------------|
 | `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
 | `nc_snap_admin_password`      | yes      | `undefined`       | Password for Nextcloud admin user. |
