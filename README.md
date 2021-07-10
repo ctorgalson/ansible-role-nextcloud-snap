@@ -1,38 +1,53 @@
-Role Name
-=========
+# ctorgalson.nextcloud_snap
 
-A brief description of the role goes here.
+An Ansible role to install and configure the Nextcloud snap.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The role has no special requirements, but assumes an Ubuntu LTS (currently
+20.04) server. It will install `snapd` if it's not already present.
 
-Role Variables
---------------
+**The role makes no attempt to ensure the server is secure**. That's your
+responsibility, and how you do it depends on the environment the server runs
+in. If it's the public internet, be careful :)
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Role Variables
 
-Dependencies
-------------
+| Variable name | Default value | Required | Description |
+|---------------|---------------|----------|-------------|
+| `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
+| `nc_snap_admin_password`      | yes      | `undefined`       | Password for Nextcloud admin user. |
+| `nc_snap_nextcloud_data_dir`  | no       | `undefined`       | Path to optional data directory outside the snap. |
+| `nc_snap_trusted_domains`     | yes      | `["localhost"]`   | The set of domains for accessing Nextcloud. |
+| `nc_snap_letsencrypt_email`   | yes      | `undefined`       | The email address used for Letsencrypt certificate generation. |
+| `nc_snap_nextcloud_commands`  | yes      | `[]`              | A set of arbitrary Nextcloud commands to run after the role tasks are complete. |
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+## Example Playbook
 
     - hosts: servers
+      vars:
+        # Login with this user.
+        nc_snap_admin_user: "nextcloud_admin"
+        # Login with this password.
+        nc_snap_admin_password: "uQ21v6z22!6iho7h3n^4OxHnehXRbNDo"
+        # Use this directory (perhaps a mounted external volume) for storage.
+        nc_snap_nextcloud_data_dir: "/var/nextcloud/data"
+        # Use only these domains to access the Nextcloud installation.
+        nc_snap_trusted_domains:
+          - "localhost"
+          - "example.com"
+        # Use this email address for Letsencrypt certificate generation.
+        nc_snap_letsencrypt_email: "example@example.com"
+        # Run these arbitrary nextcloud commands after the playbook runs.
+        nc_snap_nextcloud_commands:
+          - "status"
       roles:
-         - { role: username.rolename, x: 42 }
+         - ctorgalson.nextcloud_snap
 
-License
--------
+## License
 
-BSD
+GPL-3.0-only
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Christopher Torgalson
