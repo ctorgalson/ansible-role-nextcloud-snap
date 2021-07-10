@@ -4,7 +4,7 @@
 - name: "Install nextcloud snap."
   import_tasks: "install-nextcloud-snap.yml"
 
-- name: "Configure nextcloud volumes."
+- name: "Configure nextcloud storage."
   import_tasks: "configure-nextcloud-storage.yml"
   when: "nc_snap_nextcloud_data_dir is defined"
 
