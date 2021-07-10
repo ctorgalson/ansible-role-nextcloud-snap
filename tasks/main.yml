@@ -6,6 +6,7 @@
 
 - name: "Configure nextcloud volumes."
   import_tasks: "configure-nextcloud-storage.yml"
+  when: "nc_snap_nextcloud_data_dir is defined"
 
 - name: "Install nextcloud app."
   import_tasks: "install-nextcloud-app.yml"
@@ -15,8 +16,6 @@
 
 - name: "Configure nextcloud https and ssl certificates."
   import_tasks: "configure-nextcloud-https.yml"
-  tags:
-    - notest
 
 - name: "Run postinstall or maintenance nextcloud commands."
   import_tasks: "run-nextcloud-commands.yml"
