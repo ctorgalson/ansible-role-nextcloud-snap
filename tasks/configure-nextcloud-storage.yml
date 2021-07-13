@@ -8,17 +8,11 @@
     owner: "root"
     group: "root"
 
-- name: "Temporarily disable nextcloud snap."
-  command: "snap stop nextcloud"
+- name: "Determine the current nextcloud data directory path."
+  command: "nextcloud.occ config:system:get datadirectory"
+  register: configured_datadirectory
   changed_when: false
 
-- name: "Configure nextcloud to use non-snap data directory."
-  lineinfile:
-    path: "/var/snap/nextcloud/current/nextcloud/config/autoconfig.php"
-    regexp: "^'directory'"
-    create: false
-    line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}',"
-
-- name: "Re-enable nextcloud snap."
-  command: "snap start nextcloud"
-  changed_when: false
+- name: "Set non-snap nextcloud data directory."
+  command: "nextcloud.occ config:system:set datadirectory {{ nc_snap_nextcloud_data_dir }}"
+  when: "configured_datadirectory.stdout != nc_snap_nextcloud_data_dir"
