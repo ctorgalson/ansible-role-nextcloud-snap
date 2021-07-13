@@ -1,25 +1,33 @@
 ---
 # nextcloud volume mounting and configuration
+#
+# @see https://github.com/nextcloud/nextcloud-snap/wiki/Change-data-directory-to-use-another-disk-partition#if-you-just-installed-the-snap-and-havent-created-an-admin-user-yet
+
+- name: "Set non-snap nextcloud data directory fact."
+  set_fact:
+    nc_snap_nextcloud_data_dir: "{{ nc_snap_nextcloud_dir }}/data"
+
+- name: "Ensure correct file permissions of data directory."
+  file:
+    path: "{{ nc_snap_nextcloud_dir }}"
+    owner: "root"
+    group: "root"
+    mode: "0770"
+    recurse: true
 
 - name: "Ensure non-snap nextcloud data directory exists."
   file:
     path: "{{ nc_snap_nextcloud_data_dir }}"
     state: directory
-    owner: "www-data"
-    group: "www-data"
-
-- name: "Ensure non-snap nextcloud data directory is prepared."
-  file:
-    path: "{{ nc_snap_nextcloud_data_dir }}/.ocdata"
-    state: touch
-    owner: "www-data"
-    group: "www-data"
+    owner: "root"
+    group: "root"
+    mode: "0770"
 
 - name: "Determine the current nextcloud data directory path."
   command: "nextcloud.occ config:system:get datadirectory"
   register: configured_datadirectory
   changed_when: false
 
-- name: "Set non-snap nextcloud data directory."
-  command: "nextcloud.occ config:system:set datadirectory {{ nc_snap_nextcloud_data_dir }}"
-  when: "configured_datadirectory.stdout != nc_snap_nextcloud_data_dir"
+- name: "Set the nextcloud data directory path."
+  command: "nextcloud.occ config:system:set datadirectory --value='{{ nc_snap_nextcloud_data_dir }}'"
+  when: "nc_snap_nextcloud_data_dir not in configured_datadirectory.stdout"

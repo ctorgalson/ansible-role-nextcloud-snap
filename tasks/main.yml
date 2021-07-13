@@ -9,7 +9,7 @@
 
 - name: "Configure nextcloud storage."
   import_tasks: "configure-nextcloud-storage.yml"
-  when: "nc_snap_nextcloud_data_dir is defined"
+  when: "nc_snap_nextcloud_dir is defined"
 
 - name: "Configure nextcloud trusted domains."
   import_tasks: "configure-nextcloud-trusted-domains.yml"

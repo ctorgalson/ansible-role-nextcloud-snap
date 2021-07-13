@@ -5,7 +5,7 @@
 
 nc_snap_admin_user: "nextcloud_admin"
 # nc_snap_admin_password: "password"
-# nc_snap_nextcloud_data_dir: "/var/nextcloud/data"
+# nc_snap_nextcloud_dir: "/var/nextcloud"
 nc_snap_trusted_domains:
   - "localhost"
 # nc_snap_letsencrypt_email: "email@example.com"
