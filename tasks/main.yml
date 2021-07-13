@@ -25,6 +25,7 @@
 
 - name: "Configure nextcloud https and ssl certificates."
   import_tasks: "configure-nextcloud-https.yml"
+  when: false
 
 - name: "Run postinstall or maintenance nextcloud commands."
   import_tasks: "run-nextcloud-commands.yml"

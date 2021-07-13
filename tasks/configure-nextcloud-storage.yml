@@ -28,9 +28,17 @@
     group: "root"
     mode: "0775"
 
-- name: "Set the nextcloud data directory path."
+- name: "Set the nextcloud data directory path in autoconfig.php."
   lineinfile:
     path: "/var/snap/nextcloud/current/nextcloud/config/autoconfig.php"
     regexp: "^'directory'"
-    line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}'"
+    line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}',"
+    create: false
+
+- name: "Set the nextcloud data directory path in config.php."
+  lineinfile:
+    path: "/var/snap/nextcloud/current/nextcloud/config/config.php"
+    regexp: "^'datadirectory'"
+    insertafter: "^\$CONFIG"
+    line: "'datadirectory' => '{{ nc_snap_nextcloud_data_dir }}',"
     create: false
