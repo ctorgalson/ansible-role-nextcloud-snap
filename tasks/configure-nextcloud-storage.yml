@@ -30,7 +30,7 @@
 
 - name: "Set the nextcloud data directory path."
   lineinfile:
-    path: "{{ nc_snap_nextcloud_data_dir }}"
+    path: "/var/snap/nextcloud/current/nextcloud/config/autoconfig.php"
     regexp: "^'directory'"
     line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}'"
     create: false
