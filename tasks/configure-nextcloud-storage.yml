@@ -37,8 +37,3 @@
 
 - name: "Restart the PHP service."
   command: "snap restart nextcloud.php-fpm"
-
-- name: "Refresh the homepage."
-  get_url:
-    url: "http://127.0.0.1:80/index.php"
-    dest: "/tmp/index.php"

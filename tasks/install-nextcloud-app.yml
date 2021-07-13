@@ -1,8 +1,29 @@
 ---
 # nextcloud app installation for ansible-role-nextcloud-app
+#
+# This *should* be simpler -- nextcloud.manual-install username password -- is
+# the intended method. But there's a but with that method where the installer
+# will not use the data directory defined in the snap's autoconfig.php.
+#
+# @see https://github.com/nextcloud/nextcloud-snap/issues/1670
+# @todo:
+#   - Restore the original task when #1670 is fixed:
+#
+#       - name: "Manually install Nextcloud."
+#         command: >
+#           nextcloud.manual-install
+#             {{ nc_snap_admin_user }}
+#             {{ nc_snap_admin_password }}
 
-- name: "Manually install Nextcloud."
-  command: >
-    nextcloud.manual-install
-      {{ nc_snap_admin_user }}
-      {{ nc_snap_admin_password }}
+- name: "Manually install nextcloud via POST."
+  uri:
+    url: "http://127.0.0.1:80/index.php"
+    method: "POST"
+    body_format: "form-urlencoded"
+    body:
+      install: true
+      adminlogin: "{{ nc_snap_admin_user }}"
+      adminpass: "{{ nc_snap_admin_password }}"
+      adminpass-clone: "admin"
+    timeout: 120
+    status_code: 302
