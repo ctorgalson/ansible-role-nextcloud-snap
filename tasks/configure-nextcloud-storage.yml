@@ -39,6 +39,6 @@
   lineinfile:
     path: "/var/snap/nextcloud/current/nextcloud/config/config.php"
     regexp: "^'datadirectory'"
-    insertafter: "^\$CONFIG"
+    insertafter: "^\\$CONFIG"
     line: "'datadirectory' => '{{ nc_snap_nextcloud_data_dir }}',"
     create: false
