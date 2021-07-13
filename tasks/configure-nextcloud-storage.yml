@@ -31,7 +31,7 @@
 - name: "Ensure non-snap nextcloud data directory marker file exists."
   file:
     path: "{{ nc_snap_nextcloud_data_dir }}/.ocdata"
-    state: directory
+    state: touch
     owner: "root"
     group: "root"
     mode: "0660"
