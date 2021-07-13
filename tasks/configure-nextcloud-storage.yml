@@ -15,8 +15,8 @@
 - name: "Ensure correct file permissions of nextcloud directory."
   file:
     path: "{{ nc_snap_nextcloud_dir }}"
-    owner: "root"
-    group: "root"
+    owner: "www-data"
+    group: "www-data"
     mode: "0770"
     recurse: true
 
@@ -24,16 +24,16 @@
   file:
     path: "{{ nc_snap_nextcloud_data_dir }}"
     state: directory
-    owner: "root"
-    group: "root"
+    owner: "www-data"
+    group: "www-data"
     mode: "0770"
 
 - name: "Ensure non-snap nextcloud data directory marker file exists."
   file:
     path: "{{ nc_snap_nextcloud_data_dir }}/.ocdata"
     state: touch
-    owner: "root"
-    group: "root"
+    owner: "www-data"
+    group: "www-data"
     mode: "0660"
 
 - name: "Set the nextcloud data directory path in autoconfig.php."
