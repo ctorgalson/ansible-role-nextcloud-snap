@@ -24,6 +24,5 @@
       install: true
       adminlogin: "{{ nc_snap_admin_user }}"
       adminpass: "{{ nc_snap_admin_password }}"
-      adminpass-clone: "admin"
     timeout: 120
     status_code: 302
