@@ -7,6 +7,9 @@
     state: directory
     owner: "root"
     group: "root"
+  notify:
+    - "disable nextcloud snap"
+
 
 - name: "Configure nextcloud to use non-snap data directory."
   lineinfile:
@@ -14,3 +17,5 @@
     regexp: "^'directory'"
     create: false
     line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}',"
+  notify:
+    - "enable nextcloud snap"
