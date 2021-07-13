@@ -5,8 +5,15 @@
   file:
     path: "{{ nc_snap_nextcloud_data_dir }}"
     state: directory
-    owner: "root"
-    group: "root"
+    owner: "www-data"
+    group: "www-data"
+
+- name: "Ensure non-snap nextcloud data directory is prepared."
+  file:
+    path: "{{ nc_snap_nextcloud_data_dir }}/.ocdata"
+    state: touch
+    owner: "www-data"
+    group: "www-data"
 
 - name: "Determine the current nextcloud data directory path."
   command: "nextcloud.occ config:system:get datadirectory"
