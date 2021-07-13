@@ -20,10 +20,17 @@ won't run without them.
 |---------------|---------------|----------|-------------|
 | `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
 | `nc_snap_admin_password`      | yes      | `undefined`       | Password for Nextcloud admin user. |
-| `nc_snap_nextcloud_data_dir`  | no       | `undefined`       | Path to optional data directory outside the snap. |
+| `nc_snap_nextcloud_data_dir`  | no       | `undefined`       | Path to optional data directory outside the snap.* |
 | `nc_snap_trusted_domains`     | yes      | `["localhost"]`   | The set of domains for accessing Nextcloud. |
 | `nc_snap_letsencrypt_email`   | yes      | `undefined`       | The email address used for Letsencrypt certificate generation. |
 | `nc_snap_nextcloud_commands`  | yes      | `[]`              | A set of arbitrary Nextcloud commands to run after the role tasks are complete. |
+
+\* Storage outside the snap is unsupported (and the related unfinished tasks
+will stay unfininshed) until the `nextcloud/nextcloud-snap` project sorts out
+[issue #1670 (nextcloud.manual-install ignoring directory in
+autoconfig.php)](https://github.com/nextcloud/nextcloud-snap/issues/1670). This
+means that Nextcloud storage will be limited to whatever storage the snap has
+immediate access to!
 
 ## Example Playbook
 
