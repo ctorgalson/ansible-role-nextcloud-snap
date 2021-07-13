@@ -9,7 +9,7 @@
     group: "root"
 
 - name: "Temporarily disable nextcloud snap."
-  command: "snap disable nextcloud"
+  command: "snap stop nextcloud"
   changed_when: false
 
 - name: "Configure nextcloud to use non-snap data directory."
@@ -20,5 +20,5 @@
     line: "'directory' => '{{ nc_snap_nextcloud_data_dir }}',"
 
 - name: "Re-enable nextcloud snap."
-  command: "snap enable nextcloud"
+  command: "snap start nextcloud"
   changed_when: false
