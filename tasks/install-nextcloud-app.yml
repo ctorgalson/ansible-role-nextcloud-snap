@@ -1,14 +1,8 @@
 ---
 # nextcloud app installation for ansible-role-nextcloud-app
 
-- name: "Get Nextcloud app status."
-  command: "nextcloud.occ status"
-  register: nextcloud_app_status
-  changed_when: false
-
 - name: "Manually install Nextcloud."
   command: >
     nextcloud.manual-install
       {{ nc_snap_admin_user }}
       {{ nc_snap_admin_password }}
-  when: "'installed: true' not in nextcloud_app_status.stdout"
