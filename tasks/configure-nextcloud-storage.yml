@@ -15,13 +15,13 @@
     mode: "0770"
     recurse: true
 
-- name: "Ensure non-snap nextcloud data directory exists."
-  file:
-    path: "{{ nc_snap_nextcloud_data_dir }}"
-    state: directory
-    owner: "root"
-    group: "root"
-    mode: "0770"
+#- name: "Ensure non-snap nextcloud data directory exists."
+#  file:
+#    path: "{{ nc_snap_nextcloud_data_dir }}"
+#    state: directory
+#    owner: "root"
+#    group: "root"
+#    mode: "0770"
 
 - name: "Determine the current nextcloud data directory path."
   command: "nextcloud.occ config:system:get datadirectory"
