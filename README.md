@@ -18,6 +18,7 @@ won't run without them.
 
 | Variable name | Required | Default | Description |
 |---------------|---------------|----------|-------------|
+| `nc_snap_install_channel` | yes | `stable` | The channel to use for installing the snap; options include beta, candidate, edge, and stable. |
 | `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
 | `nc_snap_admin_password`      | yes      | `undefined`       | Password for Nextcloud admin user. |
 | `nc_snap_nextcloud_data_dir`  | no       | `undefined`       | Path to optional data directory outside the snap.* |
