@@ -4,8 +4,12 @@ An Ansible role to install and configure the Nextcloud snap.
 
 ## Requirements
 
-The role has no special requirements, but assumes an Ubuntu LTS (currently
-20.04) server. It will install `snapd` if it's not already present.
+The role has one requirement: [the Ansible `community.general` collection](https://docs.ansible.com/ansible/latest/collections/community/general/)
+
+Install this with `ansible-galaxy install community.general`.
+
+The role has no other special requirements, but assumes an Ubuntu LTS (currently
+20.04) server, and will install `snapd` if it's not already present.
 
 **The role makes no attempt to ensure the server is secure**. That's your
 responsibility, and how you do it depends on the environment the server runs
