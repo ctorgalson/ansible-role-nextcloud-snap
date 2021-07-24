@@ -9,11 +9,8 @@
     state: "present"
     update_cache: true
 
-- name: "List already-installed snaps."
-  command: "snap list"
-  register: installed_snaps
-  changed_when: false
-
 - name: "Install Nextcloud snap."
-  command: "snap install nextcloud"
-  when: "'nextcloud' not in installed_snaps.stdout"
+  community.general.snap:
+    name: "nextcloud"
+    classic: false
+    channel: "{{ nc_snap_install_channel }}"

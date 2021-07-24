@@ -3,6 +3,7 @@
 #
 # Some required variables left deliberately undefined--the user MUST set them.
 
+nc_snap_install_channel: "stable"
 nc_snap_admin_user: "nextcloud_admin"
 # nc_snap_admin_password: "password"
 # nc_snap_nextcloud_data_dir: "/var/nextcloud/data"

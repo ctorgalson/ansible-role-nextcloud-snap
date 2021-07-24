@@ -4,8 +4,12 @@ An Ansible role to install and configure the Nextcloud snap.
 
 ## Requirements
 
-The role has no special requirements, but assumes an Ubuntu LTS (currently
-20.04) server. It will install `snapd` if it's not already present.
+The role has one requirement: [the Ansible `community.general` collection](https://docs.ansible.com/ansible/latest/collections/community/general/)
+
+Install this with `ansible-galaxy install community.general`.
+
+The role has no other special requirements, but assumes an Ubuntu LTS (currently
+20.04) server, and will install `snapd` if it's not already present.
 
 **The role makes no attempt to ensure the server is secure**. That's your
 responsibility, and how you do it depends on the environment the server runs
@@ -18,6 +22,7 @@ won't run without them.
 
 | Variable name | Required | Default | Description |
 |---------------|---------------|----------|-------------|
+| `nc_snap_install_channel` | yes | `stable` | The channel to use for installing the snap; options include beta, candidate, edge, and stable. |
 | `nc_snap_admin_user`          | yes      | `nextcloud_admin` | Username for Nextcloud admin user. |
 | `nc_snap_admin_password`      | yes      | `undefined`       | Password for Nextcloud admin user. |
 | `nc_snap_nextcloud_data_dir`  | no       | `undefined`       | Path to optional data directory outside the snap.* |
