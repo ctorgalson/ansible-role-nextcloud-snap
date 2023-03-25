@@ -2,7 +2,7 @@
 # dependency installation for ansible-role-nextcloud-snap
 
 - name: "Ensure that it's possible to install the Nextcloud snap."
-  apt:
+  ansible.builtin.apt:
     name:
       - "certbot"
       - "snapd"

@@ -2,12 +2,12 @@
 # nextcloud trusted domains configuration for ansible-role-nextcloud-snap
 
 - name: "Retrieve the list of nextcloud trusted domains."
-  command: "nextcloud.occ config:system:get trusted_domains"
+  ansible.builtin.command: "nextcloud.occ config:system:get trusted_domains"
   register: nextcloud_trusted_domains
   changed_when: false
 
 - name: "Set trusted domain."
-  command: >
+  ansible.builtin.command: >
     nextcloud.occ config:system:set trusted_domains
       {{ index }} --value={{ domain }}
   loop: "{{ nc_snap_trusted_domains }}"
