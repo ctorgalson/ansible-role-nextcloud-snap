@@ -26,7 +26,7 @@
 - name: "Enable https with lets-encrypt."
   expect:
     command: "nextcloud.enable-https lets-encrypt"
-    timeout: 15
+    timeout: "{{ nc_snap_letsencrypt_timeout|default(15) }}"
     responses:
       In order for: "y"
       Please enter an email address: "{{ nc_snap_letsencrypt_email }}"
