@@ -9,6 +9,7 @@
 - name: "Manually install Nextcloud."
   command: >
     nextcloud.manual-install
-      {{ nc_snap_admin_user }}
-      {{ nc_snap_admin_password }}
+    -d {{ nc_snap_nextcloud_data_dir|default('/var/snap/nextcloud/common/nextcloud/data') }}
+    {{ nc_snap_admin_user|quote }}
+    {{ nc_snap_admin_password|quote }}
   when: "'installed: true' not in nextcloud_app_status.stdout"
