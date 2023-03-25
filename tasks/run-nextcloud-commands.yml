@@ -1,8 +1,19 @@
 ---
 # nextcloud postinstall or maintenance commands
 
+- name: "Enable snap to access removable media."
+  ansible.builtin.command: "snap connect nextcloud:removable-media"
+  when:
+    - "nc_snap_nextcloud_data_dir is defined"
+    - "nc_snap_nextcloud_connect_removable_media|bool"
+
+- name: "Enable snap to access system monitoring."
+  ansible.builtin.command: "snap connect nextcloud:network-observe"
+  when:
+    - "nc_snap_nextcloud_connect_network_observe|bool"
+
 - name: "Run nextcloud occ command(s)."
-  command: "nextcloud.occ {{ command }}"
+  ansible.builtin.command: "nextcloud.occ {{ command }}"
   loop: "{{ nc_snap_nextcloud_commands }}"
   loop_control:
     loop_var: command

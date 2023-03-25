@@ -2,16 +2,16 @@
 # nextcloud https configuration for ansible-role-nextcloud-snap
 
 - name: "Set a fact for the certbot live cert directory."
-  set_fact:
+  ansible.builtin.set_fact:
     certbot_live_cert_dir: "/var/snap/nextcloud/current/certs/certbot/config/live"
 
 - name: "Check for certbot cert directory."
-  stat:
+  ansible.builtin.stat:
     path: "{{ certbot_live_cert_dir }}"
   register: certbot_live_cert_dir_stat
 
 - name: "Check for existing certificates."
-  command: "find . -type d -printf '%P\n'"
+  ansible.builtin.command: "find . -type d -printf '%P\n'"
   args:
     chdir: "{{ certbot_live_cert_dir }}"
   register: nextcloud_letsencrypt_cert_domains
@@ -19,14 +19,14 @@
   when: "certbot_live_cert_dir_stat.stat.exists"
 
 - name: "Create a list of external domains and a list of ssl-protected domains."
-  set_fact:
+  ansible.builtin.set_fact:
     nextcloud_domains: "{{ nc_snap_trusted_domains[1:] | default([]) }}"
     nextcloud_ssl_domains: "{{ nextcloud_letsencrypt_cert_domains.stdout_lines[1:] | default([]) }}"
 
 - name: "Enable https with lets-encrypt."
-  expect:
+  ansible.builtin.expect:
     command: "nextcloud.enable-https lets-encrypt"
-    timeout: 15
+    timeout: "{{ nc_snap_letsencrypt_timeout|default(15) }}"
     responses:
       In order for: "y"
       Please enter an email address: "{{ nc_snap_letsencrypt_email }}"
