@@ -7,10 +7,10 @@ nc_snap_install_channel: "stable"
 nc_snap_admin_user: "nextcloud_admin"
 # nc_snap_admin_password: "password"
 # nc_snap_nextcloud_data_dir: "/var/nextcloud/data"
-nc_snap_nextcloud_connect_removable_media: false
-nc_snap_nextcloud_connect_network_observe: false
 nc_snap_trusted_domains:
   - "localhost"
 # nc_snap_letsencrypt_email: "email@example.com"
 # nc_snap_letsencrypt_timeout: 30
 nc_snap_nextcloud_commands: []
+nc_snap_nextcloud_connect_removable_media: false
+nc_snap_nextcloud_connect_network_observe: false
